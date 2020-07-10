@@ -61,7 +61,7 @@ cd $MAVEN_PROJECT_FOLDER
 
 # Do the release
 echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
-mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -B -Darguments="$MAVEN_ARGS"
+mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare-with-pom -B -Darguments="$MAVEN_ARGS"
 
 if [[ $SKIP_PERFORM == "false" ]]; then
      echo "Do mvn release:perform with arguments $MAVEN_ARGS"
