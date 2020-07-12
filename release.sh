@@ -59,9 +59,14 @@ fi
 echo "Move to folder $MAVEN_PROJECT_FOLDER"
 cd $MAVEN_PROJECT_FOLDER
 
+# Overwrite swagger version (from env)
+echo "Set spec yaml version to $RELEASE_VERSION"
+sed 's|0.0.0|$RELEASE_VERSION|g' src/main/resources/api-schema/v1/master-schema.yaml
+
+
 # Do the release
 echo "Do mvn release:prepare with arguments $MAVEN_ARGS"
-mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare-with-pom -X -B -Darguments="$MAVEN_ARGS"
+mvn $MAVEN_SETTINGS_OPTION $MAVEN_REPO_LOCAL -Dusername=$GITHUB_ACCESS_TOKEN release:prepare -X -B -Darguments="$MAVEN_ARGS"
 
 if [[ $SKIP_PERFORM == "false" ]]; then
      echo "Do mvn release:perform with arguments $MAVEN_ARGS"
