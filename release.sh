@@ -61,7 +61,7 @@ cd $MAVEN_PROJECT_FOLDER
 
 # Overwrite swagger version (from env)
 echo "Set spec yaml version to $RELEASE_VERSION"
-sed 's|0.0.0|$RELEASE_VERSION|g' src/main/resources/api-schema/v1/master-schema.yaml
+sed "s|0.0.0|$RELEASE_VERSION|g" src/main/resources/api-schema/v1/master-schema.yaml
 
 
 # Do the release
